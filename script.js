@@ -10,6 +10,8 @@
 // WHEN the game is over
 // THEN I can save my initials and my score
 
+
+
 //selecting all required elements
 const start_btn = document.querySelector(".start_btn button");
 const info_box = document.querySelector(".info_box");
@@ -25,6 +27,16 @@ const highscoreInputName = document.getElementById("initials")
 const highscoreDisplayName = document.getElementById("highscore-initials");
 const highscoreDisplayScore = document.getElementById("highscore-score");
 const submitScoreBtn = document.getElementById("submitScore")
+var time = 60; 
+//let timeValue =  60; 
+let que_count = 0;
+let que_numb = 1;
+let userScore = 0;
+let counter;
+let counterLine;
+let widthValue = 0;
+const restart_quiz = result_box.querySelector(".buttons .restart");
+const quit_quiz = result_box.querySelector(".buttons .quit");
 
 // if startQuiz button clicked 
 // show info box
@@ -61,44 +73,38 @@ function handleContinue_btn(){
     quiz_box.classList.add("activeQuiz");
     showQuestions(0);
     queCounter(1); //because queCounter is before startTimer and startTimerLine, so we need to call it first, then it will show the startTimer function and startTimerLine 
-    startTimer(time); 
+    timeCount.textContent = time;
+    startTimer(); 
     startTimerLine(0);
 }
 
-var time = 60; 
-let timeValue =  60; 
-let que_count = 0;
-let que_numb = 1;
-let userScore = 0;
-let counter;
-let counterLine;
-let widthValue = 0;
-const restart_quiz = result_box.querySelector(".buttons .restart");
-const quit_quiz = result_box.querySelector(".buttons .quit");
 
-// if restartQuiz button clicked
-// restart_quiz.onclick = ()=>{
-//     quiz_box.classList.add("activeQuiz"); //show quiz box
-//     result_box.classList.remove("activeResult"); //hide result box
-//     timeValue = 15; 
-//     que_count = 0;
-//     que_numb = 1;
-//     userScore = 0;
-//     widthValue = 0;
-//     showQuestions(que_count); //calling showQestions function
-//     queCounter(que_numb); //passing que_numb value to queCounter
-//     clearInterval(counter); //clear counter
-//     clearInterval(counterLine); //clear counterLine
-//     startTimer(timeValue); //calling startTimer function
-//     startTimerLine(widthValue); //calling startTimerLine function
-//     timeText.textContent = "Time Left"; //change the text of timeText to Time Left
-//     next_btn.classList.remove("show"); //hide the next button
-// }
 
-// if quitQuiz button clicked
-// quit_quiz.onclick = ()=>{
-//     window.location.reload(); //reload the current window
-// }
+//if restartQuiz button clicked
+restart_quiz.onclick = ()=>{
+    quiz_box.classList.add("activeQuiz"); //show quiz box
+    result_box.classList.remove("activeResult"); //hide result box
+    //timeValue = 15; 
+    que_count = 0;
+    que_numb = 1;
+    userScore = 0;
+    widthValue = 0;
+    showQuestions(que_count); //calling showQestions function
+    queCounter(que_numb); //passing que_numb value to queCounter
+    clearInterval(counter); //clear counter
+    clearInterval(counterLine); //clear counterLine
+    time = 60;
+    timeCount.textContent = time;
+    startTimer(); //calling startTimer function
+    startTimerLine(widthValue); //calling startTimerLine function
+    timeText.textContent = "Time Left"; //change the text of timeText to Time Left
+    next_btn.classList.remove("show"); //hide the next button
+}
+
+//if quitQuiz button clicked
+quit_quiz.onclick = ()=>{
+    window.location.reload(); //reload the current window
+}
 
 const next_btn = document.querySelector("footer .next_btn");
 const bottom_ques_counter = document.querySelector("footer .total_que");
@@ -256,17 +262,21 @@ function showResult(){
 //     }
 // }
 
-function startTimer(time){
+function startTimer(){
     counter = setInterval(timer, 1000);
     function timer(){
-        timeCount.textContent = '00:' + time;
         time--;
+        
 
         if (time < 0) {
             clearInterval(counter);
             timeText.textContent = 'Time Off'
             showResult(); //calling showResult function
+            //return; //break the timer()function, when 
+        }else{
+            timeCount.textContent = time;
         }
+        
     }
 }
 
@@ -327,11 +337,16 @@ function generateHighscores(){
     }
 }
 
+var clearScoreBtn = document.getElementById("clearScore")
+
+clearScoreBtn.addEventListener("click", clearScore)
+
 function clearScore(){
+    console.log('inside the clear function');
     window.localStorage.clear();
     highscoreDisplayName.textContent = "";
     highscoreDisplayScore.textContent = "";
+    
 }
-
 
 //TODO: change the rules: if you answer incorrectly, time is subtracted from the clock 
