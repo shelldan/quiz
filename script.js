@@ -32,7 +32,6 @@ let que_numb = 1;
 let userScore = 0;
 let counter;
 let counterLine;
-let widthValue = 0;
 const restart_quiz = result_box.querySelector(".buttons .restart");
 const quit_quiz = result_box.querySelector(".buttons .quit");
 
@@ -62,7 +61,7 @@ function handleExit_btn (){
 // calling showQuestion
 // passing 1 parameter to queCounter
 // calling startTimer function 
-// calling startTimerLine function 
+
 
 continue_btn.addEventListener("click",handleContinue_btn);
 
@@ -70,10 +69,9 @@ function handleContinue_btn(){
     info_box.classList.remove("activeInfo");
     quiz_box.classList.add("activeQuiz");
     showQuestions(0);
-    queCounter(1); //because queCounter is before startTimer and startTimerLine, so we need to call it first, then it will show the startTimer function and startTimerLine 
+    queCounter(1); //because queCounter is before startTimer, so we need to call it first, then it will show the startTimer function
     timeCount.textContent = time;
     startTimer(); 
-    //startTimerLine(0);
 }
 
 
@@ -85,7 +83,6 @@ restart_quiz.onclick = ()=>{
     que_count = 0;
     que_numb = 1;
     userScore = 0;
-    widthValue = 0;
     showQuestions(que_count); //calling showQestions function
     queCounter(que_numb); //passing que_numb value to queCounter
     clearInterval(counter); //clear counter
@@ -93,7 +90,6 @@ restart_quiz.onclick = ()=>{
     time = 60;
     timeCount.textContent = time;
     startTimer(); //calling startTimer function
-    //startTimerLine(widthValue); //calling startTimerLine function
     timeText.textContent = "Time Left"; //change the text of timeText to Time Left
     next_btn.classList.remove("show"); //hide the next button
 }
@@ -236,18 +232,6 @@ function startTimer(){
         
     }
 }
-
-
-// function startTimerLine(time){
-//     counterLine = setInterval(timer, 550/60);
-//     function timer(){
-//         time += 1; //upgrading time value with 1
-//         time_line.style.width = time + "px"; //increasing width of time_line with px by time value
-//         if(time > 549){ //if time value is greater than 549, because the total width is 550px 
-//             clearInterval(counterLine); //clear counterLine
-//         }
-//     }
-// }
 
 
 function queCounter(index){
