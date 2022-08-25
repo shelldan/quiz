@@ -39,6 +39,9 @@ https://shelldan.github.io/quiz/
 
 <div>
     <img src="./image/Start_Quiz.png" width=100% />
+</div>
+
+<div>
     <img src="./image/Some Rules of this Quiz.pgn" width=100% />
     <img src="./image/Quiz_Box.pgn" width=100% />
     <img src="./image/Result_Box.pgn" width=100% />
