@@ -26,7 +26,7 @@ const highscoreInputName = document.getElementById("initials")
 const highscoreDisplayName = document.getElementById("highscore-initials");
 const highscoreDisplayScore = document.getElementById("highscore-score");
 const submitScoreBtn = document.getElementById("submitScore")
-var time = 60; //place holder for now, testing
+var time = 5; //place holder for now, testing
 let que_count = 0;
 let que_numb = 1;
 let userScore = 0;
@@ -281,8 +281,8 @@ submitScoreBtn.addEventListener("click", function highscore(){
 })
 
 function generateHighscores(){
-    highscoreDisplayName.innerHTML = "";
-    highscoreDisplayScore.innerHTML = "";
+    highscoreDisplayName.innerHTML =  "Player: " + " ";
+    highscoreDisplayScore.innerHTML = "Score: " + " ";
     var highscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
     for (i=0; i<highscores.length; i++){
         var newNameSpan = document.createElement("li");
@@ -314,4 +314,8 @@ function clearScore(){
 // Display the score 
 // Initial                   Score 
 //    XL                        5
+//    XL                        6
+
+//  Clear Score 
+//  Replay Quiz Quit Quiz 
 

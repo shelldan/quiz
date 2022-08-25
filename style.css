@@ -348,6 +348,37 @@ footer button.show{
     border: 1px solid #007bff;
     transition: all 0.3s ease;
 }
+
+
+.result_box .display #initials{
+    font-size:20px;
+    width: 100%;
+}
+
+.result_box .display .score{
+    display:flex;
+    justify-content: space-evenly;
+}
+
+.buttons button#submitScore{
+    color: #fff;
+    background: #007bff;
+}
+
+.buttons button#submitScore:hover{
+    background: #0263ca;
+}
+
+.buttons button#clearScore{
+    color: #007bff;
+    background: #fff;
+}
+
+.buttons button#clearScore:hover{
+    color: #fff;
+    background: #007bff;
+}
+
 .buttons button.restart{
     color: #fff;
     background: #007bff;
@@ -363,3 +394,4 @@ footer button.show{
     color: #fff;
     background: #007bff;
 }
+

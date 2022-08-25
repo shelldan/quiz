@@ -63,11 +63,18 @@
         </div>
 
         <!--save initial and score-->
-        <input type="text" placeholder="Enter your intial" name="intials" id="initials"/>
-        <button id="submitScore">Submit Score</button>
-        <button id="clearScore">Clear Score</button>
-        <div id="highscore-initials"></div>
-        <div id="highscore-score"></div>
+        <div class="display">
+            <input type="text" placeholder="Please enter your initial" name="intials" id="initials"/>
+            <div class="buttons">
+                <button id="submitScore">Submit Score</button>
+                <button id="clearScore">Clear Score</button>
+            </div>
+            <div class="score">
+                    <div id="highscore-initials">Player:</div>
+                    <div id="highscore-score">Score:</div>                                     
+            </div>
+
+        </div>
 
         <!--restart and quit button-->
         <div class="buttons">
