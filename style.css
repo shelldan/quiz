@@ -45,7 +45,7 @@ body{
     font-size: 25px;
     font-weight: 500;
     color:#007bff;
-    padding: 15px 30; /*vertical | horizontal */
+    padding: 15px 30px; /*vertical | horizontal */
     outline: none; /*outline sets most of the outline properties in a single declaration */
     border: none;
     border-radius: 5px;

@@ -1,3 +1,4 @@
+// Criteria 
 // GIVEN I am taking a code quiz
 // WHEN I click the start button
 // THEN a timer starts and I am presented with a question
@@ -9,8 +10,6 @@
 // THEN the game is over
 // WHEN the game is over
 // THEN I can save my initials and my score
-
-
 
 //selecting all required elements
 const start_btn = document.querySelector(".start_btn button");
@@ -27,8 +26,7 @@ const highscoreInputName = document.getElementById("initials")
 const highscoreDisplayName = document.getElementById("highscore-initials");
 const highscoreDisplayScore = document.getElementById("highscore-score");
 const submitScoreBtn = document.getElementById("submitScore")
-var time = 60; 
-//let timeValue =  60; 
+var time = 60; //place holder for now, testing
 let que_count = 0;
 let que_numb = 1;
 let userScore = 0;
@@ -84,7 +82,6 @@ function handleContinue_btn(){
 restart_quiz.onclick = ()=>{
     quiz_box.classList.add("activeQuiz"); //show quiz box
     result_box.classList.remove("activeResult"); //hide result box
-    //timeValue = 15; 
     que_count = 0;
     que_numb = 1;
     userScore = 0;
@@ -116,15 +113,9 @@ next_btn.onclick = ()=>{
         que_numb++; //increment the que_numb value
         showQuestions(que_count); //calling showQestions function
         queCounter(que_numb); //passing que_numb value to queCounter
-        //clearInterval(counter); //clear counter
-        //clearInterval(counterLine); //clear counterLine
-        //startTimer(timeValue); //calling startTimer function
-        //startTimerLine(widthValue); //calling startTimerLine function
         timeText.textContent = "Time Left"; //change the timeText to Time Left
         next_btn.classList.remove("show"); //hide the next button
     }else{
-        //clearInterval(counter); //clear counter
-        //clearInterval(counterLine); //clear counterLine
         showResult(); //calling showResult function
     }
 }
@@ -178,8 +169,6 @@ let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 
 //if user clicked on option, Question: it seems the answer parameter is randomly assigned, not the same as questions object answer. 
 function optionSelected(answer){
-    //clearInterval(counter); //clear counter
-    //clearInterval(counterLine); //clear counterLine
     let userAns = answer.textContent; //getting user selected option, 
     let correcAns = questions[que_count].answer; //getting correct answer from array, que_count (variable) = 0, starting from 0; Question: why don't we use questions[index].answer 
     const allOptions = option_list.children.length; //getting all option items, which is 4
@@ -231,37 +220,6 @@ function showResult(){
 }
 
 
-
-//     startTimer(60); form handledContinue_btn; so 'time' is a parameter that could be anything. 
-// function startTimer(time){
-//     counter = setInterval(timer, 1000);
-//     function timer(){
-//         timeCount.textContent = time; //changing the value of timeCount with time value
-//         time--; //decrement the time value
-//         if(time < 9){ //if timer is less than 9, 9 is signle digit, 09 are double digits
-//             let addZero = timeCount.textContent; 
-//             timeCount.textContent = "0" + addZero; //add a 0 before time value
-//         }
-//         if(time < 0){ //if timer is less than 0
-//             clearInterval(counter); //clear counter
-//             timeText.textContent = "Time Off"; //change the time text to time off
-//             const allOptions = option_list.children.length; //getting all option items
-//             let correcAns = questions[que_count].answer; //getting correct answer from array
-//             for(i=0; i < allOptions; i++){
-//                 if(option_list.children[i].textContent == correcAns){ //if there is an option which is matched to an array answer
-//                     option_list.children[i].setAttribute("class", "option correct"); //adding green color to matched option
-//                     option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to matched option
-//                     console.log("Time Off: Auto selected correct answer.");
-//                 }
-//             }
-//             for(i=0; i < allOptions; i++){
-//                 option_list.children[i].classList.add("disabled"); //once user select an option then disabled all options
-//             }
-//             next_btn.classList.add("show"); //show the next button if user selected any option
-//         }
-//     }
-// }
-
 function startTimer(){
     counter = setInterval(timer, 1000);
     function timer(){
@@ -281,13 +239,12 @@ function startTimer(){
 }
 
 
-// Question about this: how to make it align with the startTime 60? 
 function startTimerLine(time){
-    counterLine = setInterval(timer, 29);
+    counterLine = setInterval(timer, 550/60);
     function timer(){
         time += 1; //upgrading time value with 1
         time_line.style.width = time + "px"; //increasing width of time_line with px by time value
-        if(time > 549){ //if time value is greater than 549, because the total witth is 550px 
+        if(time > 549){ //if time value is greater than 549, because the total width is 550px 
             clearInterval(counterLine); //clear counterLine
         }
     }
@@ -349,4 +306,12 @@ function clearScore(){
     
 }
 
-//TODO: change the rules: if you answer incorrectly, time is subtracted from the clock 
+// You've completed the Quiz! 
+// and sorry, you got only 0 out of 10
+// Enter your initial          submit Score 
+
+
+// Display the score 
+// Initial                   Score 
+//    XL                        5
+
