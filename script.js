@@ -26,7 +26,7 @@ const highscoreInputName = document.getElementById("initials")
 const highscoreDisplayName = document.getElementById("highscore-initials");
 const highscoreDisplayScore = document.getElementById("highscore-score");
 const submitScoreBtn = document.getElementById("submitScore")
-var time = 5; //place holder for now, testing
+var time = 60; //place holder for now, testing
 let que_count = 0;
 let que_numb = 1;
 let userScore = 0;
@@ -73,7 +73,7 @@ function handleContinue_btn(){
     queCounter(1); //because queCounter is before startTimer and startTimerLine, so we need to call it first, then it will show the startTimer function and startTimerLine 
     timeCount.textContent = time;
     startTimer(); 
-    startTimerLine(0);
+    //startTimerLine(0);
 }
 
 
@@ -93,7 +93,7 @@ restart_quiz.onclick = ()=>{
     time = 60;
     timeCount.textContent = time;
     startTimer(); //calling startTimer function
-    startTimerLine(widthValue); //calling startTimerLine function
+    //startTimerLine(widthValue); //calling startTimerLine function
     timeText.textContent = "Time Left"; //change the text of timeText to Time Left
     next_btn.classList.remove("show"); //hide the next button
 }
@@ -224,7 +224,6 @@ function startTimer(){
     counter = setInterval(timer, 1000);
     function timer(){
         time--;
-        
 
         if (time < 0) {
             clearInterval(counter);
@@ -239,16 +238,16 @@ function startTimer(){
 }
 
 
-function startTimerLine(time){
-    counterLine = setInterval(timer, 550/60);
-    function timer(){
-        time += 1; //upgrading time value with 1
-        time_line.style.width = time + "px"; //increasing width of time_line with px by time value
-        if(time > 549){ //if time value is greater than 549, because the total width is 550px 
-            clearInterval(counterLine); //clear counterLine
-        }
-    }
-}
+// function startTimerLine(time){
+//     counterLine = setInterval(timer, 550/60);
+//     function timer(){
+//         time += 1; //upgrading time value with 1
+//         time_line.style.width = time + "px"; //increasing width of time_line with px by time value
+//         if(time > 549){ //if time value is greater than 549, because the total width is 550px 
+//             clearInterval(counterLine); //clear counterLine
+//         }
+//     }
+// }
 
 
 function queCounter(index){
@@ -263,6 +262,7 @@ function queCounter(index){
 // const highscoreDisplayScore = document.getElementById("highscore-score");
 
 submitScoreBtn.addEventListener("click", function highscore(){
+
     if(highscoreInputName ==='') {
         alert("initials cannot be blank");
         return false;
@@ -278,17 +278,19 @@ submitScoreBtn.addEventListener("click", function highscore(){
         localStorage.setItem("savedHighscores", JSON.stringify(savedHighscores));
         generateHighscores();
     }
+
+    highscoreInputName.value = '';
 })
 
 function generateHighscores(){
-    highscoreDisplayName.innerHTML =  "Player: " + " ";
-    highscoreDisplayScore.innerHTML = "Score: " + " ";
+    highscoreDisplayName.innerHTML =  "Player : " + " ";
+    highscoreDisplayScore.innerHTML = "Score : " + " ";
     var highscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
     for (i=0; i<highscores.length; i++){
         var newNameSpan = document.createElement("li");
         var newScoreSpan = document.createElement("li");
         newNameSpan.textContent = highscores[i].name;
-        newScoreSpan.textContent = highscores[i].score;
+        newScoreSpan.textContent = highscores[i].score + ' points';
         highscoreDisplayName.appendChild(newNameSpan);
         highscoreDisplayScore.appendChild(newScoreSpan);
     }
@@ -306,16 +308,4 @@ function clearScore(){
     
 }
 
-// You've completed the Quiz! 
-// and sorry, you got only 0 out of 10
-// Enter your initial          submit Score 
-
-
-// Display the score 
-// Initial                   Score 
-//    XL                        5
-//    XL                        6
-
-//  Clear Score 
-//  Replay Quiz Quit Quiz 
 
