@@ -38,7 +38,7 @@ https://shelldan.github.io/quiz/
 ## Screenshot of the Application 
 
 <div>
-    <img src="./image/start_quiz.pgn" width=100% />
+    <img src="./image/Start_Quiz.png" width=100% />
     <img src="./image/Some Rules of this Quiz.pgn" width=100% />
     <img src="./image/Quiz_Box.pgn" width=100% />
     <img src="./image/Result_Box.pgn" width=100% />
